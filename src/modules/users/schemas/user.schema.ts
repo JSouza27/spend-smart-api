@@ -1,22 +1,26 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
+import { User } from '../entities/user.entity';
+import { Account } from '../../accounts/entities/account.entity';
 
-export type UserDocument = HydratedDocument<User>;
+export type UserDocument = HydratedDocument<UserSchema>;
 
-@Schema()
-export class User {
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Account' })
-  account: string;
+@Schema({ collection: 'users', timestamps: true })
+export class UserSchema implements User {
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'accounts' })
+  account: Account;
 
-  @Prop()
+  @Prop({ required: true })
   name: string;
 
-  @Prop()
+  @Prop({ required: true })
   email: string;
 
   @Prop()
   imageUrl: string;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
-  additional_user: User;
+  @Prop()
+  additional_user_id: string;
 }
+
+export const UserSchemaFactory = SchemaFactory.createForClass(UserSchema);
