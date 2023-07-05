@@ -1,9 +1,9 @@
-import { Account } from '../../accounts/entities/account.entity';
+import { Types } from 'mongoose';
 
 export class User {
-  account: Account;
+  account: Types.ObjectId;
   name: string;
   email: string;
-  imageUrl: string;
-  additional_user_id: string;
+  imageUrl?: string | null;
+  additional_user_id?: Types.ObjectId | null;
 }

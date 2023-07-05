@@ -12,5 +12,6 @@ import { AccountSchema, AccountSchemaFactory } from './schemas/account.shema';
   ],
   controllers: [AccountsController],
   providers: [AccountsService],
+  exports: [AccountsService],
 })
 export class AccountsModule {}

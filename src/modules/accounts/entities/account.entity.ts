@@ -1,5 +1,5 @@
-import { User } from '../../users/entities/user.entity';
+import { Types } from 'mongoose';
 
 export class Account {
-  users: User[];
+  users: Types.ObjectId[];
 }
